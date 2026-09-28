@@ -1,0 +1,243 @@
+{% extends "base.html" %}
+
+{% block title %}Reports - Inventory Management System{% endblock %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h2>Reports</h2>
+        <p class="text-muted mb-0">
+            View inventory, sales, purchase and profit reports
+        </p>
+    </div>
+</div>
+
+<div id="reportMessage" class="alert d-none"></div>
+
+
+<!-- ==================== PROFIT SUMMARY ==================== -->
+
+<div class="row g-3 mb-4">
+
+    <!-- Total Sales -->
+    <div class="col-md-3">
+        <div class="card shadow-sm border-0">
+            <div class="card-body">
+                <h6 class="text-muted">
+                    Total Sales
+                </h6>
+
+                <h3 id="totalSales">
+                    ₹0.00
+                </h3>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Total Purchases -->
+    <div class="col-md-3">
+        <div class="card shadow-sm border-0">
+            <div class="card-body">
+                <h6 class="text-muted">
+                    Total Purchases
+                </h6>
+
+                <h3 id="totalPurchases">
+                    ₹0.00
+                </h3>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- COGS -->
+    <div class="col-md-3">
+        <div class="card shadow-sm border-0">
+            <div class="card-body">
+                <h6 class="text-muted">
+                    Cost of Goods Sold
+                </h6>
+
+                <h3 id="cogs">
+                    ₹0.00
+                </h3>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Profit -->
+    <div class="col-md-3">
+        <div class="card shadow-sm border-0">
+            <div class="card-body">
+                <h6 class="text-muted">
+                    Profit
+                </h6>
+
+                <h3 id="profit">
+                    ₹0.00
+                </h3>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<!-- ==================== STOCK REPORT ==================== -->
+
+<div class="card shadow-sm mb-4">
+
+    <div class="card-body">
+
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <div>
+                <h5 class="mb-1">Stock Report</h5>
+                <p class="text-muted mb-0">
+                    Current inventory status
+                </p>
+            </div>
+        </div>
+
+        <div class="table-responsive">
+
+            <table class="table table-hover align-middle">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>ID</th>
+                        <th>Product</th>
+                        <th>SKU</th>
+                        <th>Category</th>
+                        <th>Quantity</th>
+                        <th>Minimum Stock</th>
+                        <th>Status</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="stockReportBody">
+
+                    <tr>
+                        <td colspan="7" class="text-center">
+                            Loading stock report...
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ==================== SALES REPORT ==================== -->
+
+<div class="card shadow-sm mb-4">
+
+    <div class="card-body">
+
+        <div class="mb-3">
+            <h5 class="mb-1">Sales Report</h5>
+            <p class="text-muted mb-0">
+                Sales transaction history
+            </p>
+        </div>
+
+        <div class="table-responsive">
+
+            <table class="table table-hover align-middle">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>Sale ID</th>
+                        <th>Customer</th>
+                        <th>Date</th>
+                        <th>Total Amount</th>
+                        <th>Status</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="salesReportBody">
+
+                    <tr>
+                        <td colspan="5" class="text-center">
+                            Loading sales report...
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ==================== PURCHASE REPORT ==================== -->
+
+<div class="card shadow-sm mb-4">
+
+    <div class="card-body">
+
+        <div class="mb-3">
+            <h5 class="mb-1">Purchase Report</h5>
+            <p class="text-muted mb-0">
+                Purchase transaction history
+            </p>
+        </div>
+
+        <div class="table-responsive">
+
+            <table class="table table-hover align-middle">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>Purchase ID</th>
+                        <th>Supplier</th>
+                        <th>Date</th>
+                        <th>Total Amount</th>
+                        <th>Status</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="purchaseReportBody">
+
+                    <tr>
+                        <td colspan="5" class="text-center">
+                            Loading purchase report...
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+
+{% block scripts %}
+
+<script src="{{ url_for('static', filename='js/reports.js') }}"></script>
+
+{% endblock %}

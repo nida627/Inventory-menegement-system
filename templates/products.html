@@ -1,0 +1,406 @@
+{% extends "base.html" %}
+
+{% block title %}
+Products - Inventory Management System
+{% endblock %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+
+<div>
+    <h2>Products</h2>
+
+    <p class="text-muted mb-0">
+        Manage your inventory products
+    </p>
+</div>
+
+
+<!-- Add Product Button -->
+
+<button
+    id="addProductButton"
+    type="button"
+    class="btn btn-dark"
+    data-bs-toggle="modal"
+    data-bs-target="#productModal"
+    onclick="openAddProductModal()">
+
+    Add Product
+
+</button>
+
+
+</div>
+
+<!-- Error / Success Message -->
+
+<div
+    id="message"
+    class="alert d-none">
+</div>
+
+<!-- Products Table -->
+
+<div class="card shadow-sm">
+
+<div class="card-body">
+
+    <div class="table-responsive">
+
+        <table class="table table-hover align-middle">
+
+            <thead class="table-dark">
+
+                <tr>
+
+                    <th>ID</th>
+
+                    <th>Name</th>
+
+                    <th>SKU</th>
+
+                    <th>Category</th>
+
+                    <th>Price</th>
+
+                    <th>Quantity</th>
+
+                    <th>Minimum Stock</th>
+
+                    <th>Actions</th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody id="productsTableBody">
+
+                <tr>
+
+                    <td
+                        colspan="8"
+                        class="text-center">
+
+                        Loading products...
+
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+
+</div>
+
+<!-- ========================================== -->
+
+<!-- Add / Edit Product Modal -->
+
+<!-- ========================================== -->
+
+<div
+    class="modal fade"
+    id="productModal"
+    tabindex="-1"
+    aria-hidden="true">
+
+
+<div class="modal-dialog">
+
+    <div class="modal-content">
+
+
+        <!-- Modal Header -->
+
+        <div class="modal-header">
+
+            <h5
+                class="modal-title"
+                id="productModalTitle">
+
+                Add Product
+
+            </h5>
+
+
+            <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close">
+            </button>
+
+        </div>
+
+
+        <!-- Modal Body -->
+
+        <div class="modal-body">
+
+            <form id="productForm">
+
+
+                <!-- Hidden Product ID -->
+
+                <input
+                    type="hidden"
+                    id="productId">
+
+
+                <!-- Product Name -->
+
+                <div class="mb-3">
+
+                    <label
+                        class="form-label">
+
+                        Product Name
+
+                    </label>
+
+
+                    <input
+                        type="text"
+                        id="productName"
+                        class="form-control"
+                        required>
+
+                </div>
+
+
+                <!-- SKU -->
+
+                <div class="mb-3">
+
+                    <label
+                        class="form-label">
+
+                        SKU
+
+                    </label>
+
+
+                    <input
+                        type="text"
+                        id="productSku"
+                        class="form-control"
+                        required>
+
+                </div>
+
+
+                <!-- Description -->
+
+                <div class="mb-3">
+
+                    <label
+                        class="form-label">
+
+                        Description
+
+                    </label>
+
+
+                    <textarea
+                        id="productDescription"
+                        class="form-control"
+                        rows="2">
+                    </textarea>
+
+                </div>
+
+
+                <!-- Selling Price + Opening Quantity -->
+
+                <div class="row">
+
+
+                    <!-- Selling Price -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label
+                            class="form-label">
+
+                            Selling Price
+
+                        </label>
+
+
+                        <input
+                            type="number"
+                            id="productPrice"
+                            class="form-control"
+                            min="0"
+                            step="0.01"
+                            required>
+
+                        <small class="text-muted">
+                            Price at which product is sold to customer
+                        </small>
+
+                    </div>
+
+
+                    <!-- Opening Quantity -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label
+                            class="form-label">
+
+                            Opening Quantity
+
+                        </label>
+
+
+                        <input
+                            type="number"
+                            id="productQuantity"
+                            class="form-control"
+                            min="0"
+                            required>
+
+                        <small class="text-muted">
+                            Existing stock when system starts
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Opening Cost -->
+
+                <div class="mb-3">
+
+                    <label
+                        class="form-label">
+
+                        Opening Cost per Unit
+
+                    </label>
+
+
+                    <input
+                        type="number"
+                        id="productOpeningCost"
+                        class="form-control"
+                        min="0"
+                        step="0.01"
+                        value="0"
+                        required>
+
+                    <small class="text-muted">
+                        Cost of one unit of existing opening stock
+                    </small>
+
+                </div>
+
+
+                <!-- Minimum Stock -->
+
+                <div class="mb-3">
+
+                    <label
+                        class="form-label">
+
+                        Minimum Stock
+
+                    </label>
+
+
+                    <input
+                        type="number"
+                        id="productMinimumStock"
+                        class="form-control"
+                        min="0"
+                        value="5"
+                        required>
+
+                </div>
+
+
+                <!-- Category -->
+
+                <div class="mb-3">
+
+                    <label
+                        class="form-label">
+
+                        Category
+
+                    </label>
+
+
+                    <select
+                        id="productCategory"
+                        class="form-select"
+                        required>
+
+                        <option value="">
+                            Select Category
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+            </form>
+
+        </div>
+
+
+        <!-- Modal Footer -->
+
+        <div class="modal-footer">
+
+            <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal">
+
+                Cancel
+
+            </button>
+
+
+            <button
+                type="button"
+                class="btn btn-dark"
+                onclick="saveProduct()">
+
+                Save Product
+
+            </button>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+
+<script
+    src="{{ url_for('static', filename='js/products.js') }}">
+</script>
+
+{% endblock %}

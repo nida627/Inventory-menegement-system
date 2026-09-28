@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}
+Dashboard - Inventory Management System
+{% endblock %}
+
+{% block content %}
+
+<h2 class="mb-4">Dashboard</h2>
+
+<div class="row g-4">
+
+    <div class="col-md-4 col-lg-3">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h6>Total Products</h6>
+                <h3 id="totalProducts">0</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4 col-lg-3">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h6>Low Stock</h6>
+                <h3 id="lowStock">0</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4 col-lg-3">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h6>Out of Stock</h6>
+                <h3 id="outOfStock">0</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4 col-lg-3">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h6>Total Sales</h6>
+                <h3 id="totalSales">₹0</h3>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+
+{% endblock %}

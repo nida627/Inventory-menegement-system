@@ -1,0 +1,20 @@
+env/
+.venv/
+
+__pycache__/
+*.pyc
+
+.env
+
+instance/
+
+migrations/
+
+.vscode/
+
+.DS_Store
+Thumbs.db
+
+PROJECT REPORT Inventory_management_system.docx
+
+test.http
