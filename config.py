@@ -25,3 +25,8 @@ class Config:
     )
 
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    SQLALCHEMY_ENGINE_OPTIONS = {
+    "connect_args": {
+        "ssl": {}
+    }
+}
